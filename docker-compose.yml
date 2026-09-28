@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  ma-acquirer-engine:
+    build: .
+    container_name: ma_acquirer_engine
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=gemini-3.8-flash
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    restart: unless-stopped
